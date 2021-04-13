@@ -1,0 +1,22 @@
+.product-container{
+    display: flex;
+    border-bottom: 1px solid grey;
+   
+}
+.last-half{
+    display: flex;
+    margin-bottom: 10px;
+}
+.half-width{
+    margin-left: 50px;
+}
+.btn{
+    height: 26px;
+    width: 200px;
+    background-color: goldenrod;
+    border: 1px solid grey;
+    border-radius: 3px;
+}
+.feature-container{
+    margin-left: 100px;
+}
