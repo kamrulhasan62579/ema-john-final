@@ -1,13 +1,14 @@
 import React from 'react';
 import './Cart.css';
-import giphy from  '../../images/giphy.gif'
+// import giphy from  '../../images/giphy.gif'
+import { Link } from 'react-router-dom';
 
 const Cart = (props) => {
     const cart = props.cart;
     let total= 0;
     for (let i = 0; i < cart.length; i++) {
         const produc = cart[i];
-        total = total + produc.price;
+        total = total + produc.price * produc.quantity;
     
         
     }
@@ -18,8 +19,8 @@ const Cart = (props) => {
     else if (total > 50) {
         shipping = 4.99;
     }
-    else if (total < 50) {
-        shipping = 5.99;
+    else if (total > 20) {
+        shipping = 1.99;
     }
     const tax = (total * 0.1).toFixed(2);
    
@@ -28,20 +29,19 @@ const Cart = (props) => {
         return Number(precision);
     }
     const grandTotal = (total + Number(tax) + shipping).toFixed(2);
-    const showGiffy = (giphy) => {
-        <img src={giphy} alt=""/>
-    }
+   
     return (
         <div className="cart-content">
-            <h4>Order Summary</h4>
+            <h4 className="bg-danger p-2">Order Summary</h4>
             <p>Items Ordered: {cart.length}</p>
             <p><small>Product Total: {handleNumber(total)}</small></p>
             <p><small>Shipping: {shipping}</small></p>
             <p><small>Tax + VAT: {tax}</small></p>
             <p><small>Total Before Tax: {handleNumber(total) + shipping}</small></p>
             <p>Order Total Price: {grandTotal}</p>
-            <button onClick={showGiffy()} className="btn">Review Products</button>
-
+            {
+                props.children
+            }
         </div>
     );
 };
